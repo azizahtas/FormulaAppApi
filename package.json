@@ -1,0 +1,45 @@
+{
+  "name": "formulaapi",
+  "version": "1.0.0",
+  "description": "An Api for feeding Data to Restaurent Website!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azizahtas/PortfollioApi.git"
+  },
+  "keywords": [
+    "restaurent"
+  ],
+  "author": "Aziz Ahtas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/azizahtas/PortfollioApi/issues"
+  },
+  "homepage": "https://github.com/azizahtas/PortfollioApi#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.0",
+    "body-parser": "*",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "csprng": "^0.1.2",
+    "express": "*",
+    "express-session": "^1.14.2",
+    "hbs": "~4.0.0",
+    "jwt-simple": "^0.5.1",
+    "lodash": "^4.13.1",
+    "method-override": "^2.3.6",
+    "mongoose": "^4.8.5",
+    "mongoose-paginate": "^5.0.3",
+    "nodemailer": "^3.0.2",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
+    "passport-jwt": "^2.2.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {}
+}
