@@ -53,7 +53,7 @@ UserRouter
                     fname : usr.fname,
                     lname : usr.lname
                 };
-                var token = jwt.encode(newUser, config.secret);
+                var token = jwt.encode(newUser, config.Secret.secret);
                 res.json({success: true, msg : "Successfully Logged In!", data: token});
             }
         });
@@ -77,7 +77,7 @@ UserRouter
                     fname : usr.fname,
                     lname : usr.lname
                 };
-                var token = jwt.encode(newUser, config.secret);
+                var token = jwt.encode(newUser, config.Secret.secret);
                 res.json({success: true, msg : "Successfully Logged In!", data: [token]});
             }
             else if(!err && !isMatch && !usr){
