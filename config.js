@@ -1,11 +1,11 @@
-module.exports.Online = {
+module.exports.Local = {
 	"port" : 5555,
 	"client" : 3000,
 	"db" : "FormulaDb",
 	"db_host" : "localhost",
 	"db_port" : 27017
 };
-module.exports.Local = {
+module.exports.Online = {
 	"port" : 5555,
 	"client" : 3000,
 	"db" : "formuladb",
