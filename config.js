@@ -1,11 +1,11 @@
-module.exports.Local = {
+module.exports.Online = {
 	"port" : 5555,
 	"client" : 3000,
 	"db" : "FormulaDb",
 	"db_host" : "localhost",
 	"db_port" : 27017
 };
-module.exports.Online = {
+module.exports.Local = {
 	"port" : 5555,
 	"client" : 3000,
 	"db" : "formuladb",
@@ -24,6 +24,7 @@ module.exports.PagingOptions = {
 module.exports.Constants = {
 	option_formula_personal : "PERSONAL_FORMULA",
 	option_formula_community : "COMMUNITY_FORMULA",
-	option_customer : "CUSTOMER"
+	option_customer : "CUSTOMER",
+	option_customer_formula : "CUSTOMER_FORMULA",
 
 }

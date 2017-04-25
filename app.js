@@ -97,6 +97,12 @@ app.use(function(error, req, res, next) {
     res.status(500);
     res.render('ErrorPage/index', {title:'500: Internal Server Error', error: error});
 });*/
+process.on('SIGINT', function() {
+  mongoose.connection.close(function () {
+    console.log('Mongoose disconnected on app termination');
+    process.exit(0);
+  });
+});
 app.listen(Port,function () {
     console.log('Listening On Port '+Port);
 });

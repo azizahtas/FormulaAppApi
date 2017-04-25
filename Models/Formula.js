@@ -29,7 +29,7 @@ var FormulaSchema = new Schema({
 FormulaSchema.plugin(mongoosePaginated);
 
 var Formula = module.exports = mongoose.model('Formula',FormulaSchema,'Formulas');
-
+module.exports.modal = Formula;
 module.exports.getAllFormulas = function(callback){
     Formula.find({},callback);
 }; // Not Used

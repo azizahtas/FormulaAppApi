@@ -47,7 +47,30 @@ CustomerRouter
                 }
             }
         })(req,res,next);
-    });
+    })
+    .put('/customerformulas/:_cId',function (req, res, next) {
+        passport.authenticate('jwt', function(err, user, info) {
+            if (err) { return next(err); }
+            else if (!user) { return  res.json({'success': false, 'msg': 'ErrorU404', data: []}); }
+            else {
+                var token = this.getToken(req.headers);
+                if (token) {
+                    var cid = req.params['_cId'];
+                        var formulas = req.body;
+                        Customer.updateCustomerFormulas(user._id,cid,formulas, function (err, Customer) {
+                            if (err) {
+                                console.log('Error Saving Customer :' + err);
+                                res.json({'success': false, 'msg': 'Error Saving Customer Formulas!', data:[]});
+                            }
+                            else {
+                                res.json({'success': true, 'msg': 'Customer Formulas Saved Successfully', data:[]});
+                            }
+                        });
+                }
+            }
+        })(req,res,next);
+    })
+    ;
 
 CustomerRouter
     .get('/Id/:_id',function (req, res, next) {
@@ -106,9 +129,10 @@ CustomerRouter
             else if (!user) { return  res.json({'success': false, 'msg': 'ErrorU404', data: []}); }
             else {
                 var option = req.params['_option'];
-                var term = req.params['_term'];
-                var page = req.params['_page'];
+                
                 if(option==constraints.option_customer){
+                    var term = req.params['_term'];
+                    var page = req.params['_page'];
                     Customer.searchCustomerByUserPaged(user._id,page,term, function (err, formulas) {
                         if (err) {
                             console.log('Error :' + err);
@@ -119,9 +143,41 @@ CustomerRouter
                         }
                     });
                 }
+                else if(option==constraints.option_customer_formula){
+                    var cid = req.params['_term'];
+                    var term = req.params['_page'];
+                    Customer.searchCustomerFormulas(user._id,cid,term, function (err, formulas) {
+                        if (err) {
+                            console.log('Error :' + err);
+                            res.json({'success': false, 'msg': 'Error Retrieving Formulas of this Customer', data:[]});
+                        }
+                        else {
+                            res.json({'success': true, 'msg': 'We Found what your looking for! ', data:formulas});
+                        }
+                    });
+                }
                 else {
                     res.json({'success': false, 'msg': 'Wrong Path!', data : []});
 
+                }
+            }
+        })(req,res,next);
+    })
+    
+    //.get('/customerformulas/:_id/:_page',function (req, res, next) {
+    .get('/customerformulas/:_id',function (req, res, next) {
+        passport.authenticate('jwt', function(err, user, info) {
+            if (err) { return next(err); }
+            else if (!user) { return  res.json({'success': false, 'msg': 'ErrorU404', data: []}); }
+            else {
+                var token = this.getToken(req.headers);
+                if (token) {
+                    var cid = req.params['_id'];
+                   // var page = req.params['_page'];
+                    Customer.getCustomerFormulasByIdPaged(/*page,*/user._id,cid,function (err,data) {
+                        if(err){console.log('Error :'+err); res.json({'success': false, 'msg': 'Sorry We Could not get the Customer Formulas with the Id!', data: []});}
+                        else res.json({'success': true, 'msg': 'We Found What You Are Looking For!', data: [data]});
+                    });
                 }
             }
         })(req,res,next);
